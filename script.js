@@ -22,12 +22,14 @@ new Phaser.Game(config);
 
 function preload()
 {
-    this.load.image('sky', 'assets/sky.png');
-    this.load.image('ground', 'assets/platform.png');
+    // load assets
+    this.load.image('background', 'assets/background.png');
     this.load.image('star', 'assets/star.png');
     this.load.image('bomb', 'assets/bomb.png');
+    this.load.image('phaser_tiles', 'assets/tileset.png')
     this.load.spritesheet('perso','assets/perso.png',
                 { frameWidth: 32, frameHeight: 48 });
+    this.load.tilemapTiledJSON("map", "assets/level.json");
 }
 
 var platforms;
@@ -41,18 +43,38 @@ var score = 0;
 
 function create()
 {
-    this.add.image(400, 300, 'sky');
+    this.add.image(780, 805, 'background');
 
-    platforms = this.physics.add.staticGroup();
-    platforms.create(400, 568, 'ground').setScale(2).refreshBody();
-    platforms.create(600, 400, 'ground');
-    platforms.create(50, 250, 'ground');
-    platforms.create(750, 220, 'ground');
+    // import from tiled
+    const levelMap = this.add.tilemap("map");
+    const tileset = levelMap.addTilesetImage(
+        "placeholder",
+        "phaser_tiles"
+    );
+    const platforms = levelMap.createLayer(
+        "platerforms",
+        tileset
+    );
 
-    player = this.physics.add.sprite(100, 450, 'perso');
-    player.setCollideWorldBounds(true);
+    // add player
+    player = this.physics.add.sprite(25, 1260, 'perso');
+
+    // collisions
     this.physics.add.collider(player, platforms);
+    platforms.setCollisionByProperty({ estSolide: true });
+    platforms.setCollisionByProperty({ isSpike: true });
+    player.setCollideWorldBounds(true);
 
+    // set world bounds
+    this.physics.world.setBounds(0, 0, 1600, 1600);
+    // configure camera bounds
+    this.cameras.main.setBounds(0, 0, 1600, 1600);
+    // camlera follows player
+    this.cameras.main.startFollow(player);
+    this.cameras.main.setZoom(1.25);
+    this.cameras.main.setRoundPixels(false);
+
+    // player animations
     this.anims.create({
         key: 'left',
         frames: this.anims.generateFrameNumbers('perso', {start:0,end:3}),
@@ -76,20 +98,20 @@ function create()
     cursors = this.input.keyboard.createCursorKeys();
 
     scoreText=this.add.text(16,16,'score: 0',{fontSize:'32px',fill:'#000'});
-    //affiche un texte à l’écran, pour le score
+    // show score text
     stars = this.physics.add.group({
         key: 'star', repeat: 11,
         setXY: { x: 12, y: 0, stepX: 70 }
     });
+    // every star bounces differently
     stars.children.iterate(function (child) {
         child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-    }); //chaque étoile va rebondir un peu différemment
+    });
+    // colliders for stars
     this.physics.add.collider(stars, platforms);
-    //et collisionne avec les plateformes
     this.physics.add.overlap(player, stars, collectStar, null, this);
-    //le contact perso/étoile ne génère pas de collision (overlap)
-    //mais en revanche cela déclenche une fonction collectStar
 
+    // colliders for bombs
     bombs = this.physics.add.group();
     this.physics.add.collider(bombs, platforms);
     this.physics.add.collider(player, bombs, hitBomb, null, this);
@@ -98,29 +120,29 @@ function create()
 
 function collectStar(player, star)
 {
-    star.disableBody(true, true); // l’étoile disparaît
-    score += 10; //augmente le score de 10
-    scoreText.setText('Score: ' + score); //met à jour l’affichage du score
+    star.disableBody(true, true);
+    score += 10;
+    scoreText.setText('Score: ' + score);
 
     if (stars.countActive(true) === 0)
     {
-        // si toutes les étoiles sont prises
         stars.children.iterate(function (child) {
-        child.enableBody(true, child.x, 0, true, true);
-        }); // on les affiche toutes de nouveau
+            child.enableBody(true, child.x, 0, true, true);
+        });
+
+        // spawn bomb on the side where the player is not there
         var x = (player.x < 400) ? Phaser.Math.Between(400, 800) :
         Phaser.Math.Between(0, 400);
-        // si le perso est à gauche de l’écran, on met une bombe à droite
-        // si non, on la met à gauche de l’écran
+
         var bomb = bombs.create(x, 16, 'bomb');
         bomb.setBounce(1);
         bomb.setCollideWorldBounds(true);
         bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
-        bomb.allowGravity = false; //elle n’est pas soumise à la gravité
+        bomb.allowGravity = false;
     }
 }
 
-function hitBomb(player, bomb)
+function hitBomb(player)
 {
     this.physics.pause();
     player.setTint(0xff0000);
@@ -132,24 +154,28 @@ function update()
 {
     if (gameOver){return;}
 
+    // handle keyboard events
     if (cursors.left.isDown)
-    { //si la touche gauche est appuyée
-        player.setVelocityX(-280); //alors vitesse négative en X
-        player.anims.play('left', true); //et animation => gauche
+    {
+        player.setVelocityX(-280);
+        player.anims.play('left', true);
     }
     else if (cursors.right.isDown)
-    { //sinon si la touche droite est appuyée
-        player.setVelocityX(280); //alors vitesse positive en X
-        player.anims.play('right', true); //et animation => droite
+    {
+        player.setVelocityX(280);
+        player.anims.play('right', true);
     }
     else
-    { // sinon
-        player.setVelocityX(0); //vitesse nulle
-        player.anims.play('turn'); //animation fait face caméra
-    }
-    if (cursors.up.isDown && player.body.touching.down)
     {
-        //si touche haut appuyée ET que le perso touche le sol
-        player.setVelocityY(-500); //alors vitesse verticale négative
+        player.setVelocityX(0);
+        player.anims.play('turn');
+    }
+    if (cursors.up.isDown && player.body.blocked.down)
+    {
+        player.setVelocityY(-400);
+    }
+    if (player.body.blocked.up)
+    {
+        this.cameras.main.shake(100,0.01,0.01)
     }
 }
