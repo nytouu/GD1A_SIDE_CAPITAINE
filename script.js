@@ -183,8 +183,23 @@ function update()
     {
         player.setVelocityY(-400);
     }
-    if (player.body.blocked.up)
+    this.input.gamepad.once('connected', function (pad)
     {
-        this.cameras.main.shake(100,0.01,0.01)
+        if (pad.A)
+        {
+            console.log("A pressed");
+        }
+    })
+
+    // bad wall jump
+    if ( !player.body.blocked.down && ((player.body.blocked.right && cursors.right.isDown)
+        || (player.body.blocked.left && cursors.left.isDown)))
+    {
+        player.setVelocityY(0);
+        player.body.blocked.down = true;
+    } else
+    {
+        player.body.blocked.down = false;
     }
+
 }
