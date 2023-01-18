@@ -16,6 +16,10 @@ var config =
         preload: preload,
         create: create,
         update: update
+    },
+    input:
+    {
+        gamepad: true,
     }
 };
 new Phaser.Game(config);
@@ -97,14 +101,18 @@ function create()
 
     cursors = this.input.keyboard.createCursorKeys();
 
-    scoreText=this.add.text(16,16,'score: 0',{fontSize:'32px',fill:'#000'});
+    scoreText=this.add.text(16,16,'score: 0',{
+        fontSize:'32px',
+        fill:'#000',
+    });
     // show score text
     stars = this.physics.add.group({
         key: 'star', repeat: 11,
         setXY: { x: 12, y: 0, stepX: 70 }
     });
     // every star bounces differently
-    stars.children.iterate(function (child) {
+    stars.children.iterate(function (child)
+    {
         child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
     });
     // colliders for stars
@@ -126,7 +134,8 @@ function collectStar(player, star)
 
     if (stars.countActive(true) === 0)
     {
-        stars.children.iterate(function (child) {
+        stars.children.iterate(function (child)
+        {
             child.enableBody(true, child.x, 0, true, true);
         });
 
