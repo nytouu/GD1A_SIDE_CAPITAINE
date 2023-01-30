@@ -19,7 +19,7 @@ var config =
     },
     input:
     {
-        gamepad: true,
+        gamepad: true
     }
 };
 new Phaser.Game(config);
@@ -28,22 +28,17 @@ function preload()
 {
     // load assets
     this.load.image('background', 'assets/background.png');
-    this.load.image('star', 'assets/star.png');
-    this.load.image('bomb', 'assets/bomb.png');
     this.load.image('phaser_tiles', 'assets/tileset.png')
-    this.load.spritesheet('perso','assets/perso.png',
-                { frameWidth: 32, frameHeight: 48 });
+    this.load.spritesheet('perso','assets/chara.png',
+                { frameWidth: 32, frameHeight: 64 });
     this.load.tilemapTiledJSON("map", "assets/level.json");
 }
 
 var platforms;
 var player;
 var cursors;
-var stars;
-var scoreText;
-var bombs;
 var gameOver = false;
-var score = 0;
+var controller = false;
 
 function create()
 {
@@ -62,11 +57,13 @@ function create()
 
     // add player
     player = this.physics.add.sprite(25, 1260, 'perso');
+    player.onWall = false;
+    player.canJump = true;
 
     // collisions
     this.physics.add.collider(player, platforms);
-    platforms.setCollisionByProperty({ estSolide: true });
-    platforms.setCollisionByProperty({ isSpike: true });
+    platforms.setCollisionByProperty({ isSolid: true });
+    // platforms.setCollisionByProperty({ isSpike: true });
     player.setCollideWorldBounds(true);
 
     // set world bounds
@@ -75,26 +72,26 @@ function create()
     this.cameras.main.setBounds(0, 0, 1600, 1600);
     // camlera follows player
     this.cameras.main.startFollow(player);
-    this.cameras.main.setZoom(1.25);
+    this.cameras.main.setZoom(1.5);
     this.cameras.main.setRoundPixels(false);
 
     // player animations
     this.anims.create({
         key: 'left',
-        frames: this.anims.generateFrameNumbers('perso', {start:0,end:3}),
+        frames: this.anims.generateFrameNumbers('perso', {start:6,end:10}),
         frameRate: 10,
         repeat: -1
     });
 
     this.anims.create({
         key: 'turn',
-        frames: [ { key: 'perso', frame: 4 } ],
+        frames: [ { key: 'perso', frame: 5 } ],
         frameRate: 20
     });
 
     this.anims.create({
         key: 'right',
-        frames: this.anims.generateFrameNumbers('perso', {start:5,end:8}),
+        frames: this.anims.generateFrameNumbers('perso', {start:0,end:4}),
         frameRate: 10,
         repeat: -1
     });
@@ -123,6 +120,11 @@ function create()
     bombs = this.physics.add.group();
     this.physics.add.collider(bombs, platforms);
     this.physics.add.collider(player, bombs, hitBomb, null, this);
+
+    this.input.gamepad.once('connected', function (pad)
+    {
+        controller = pad;
+    })
 
 }
 
@@ -164,7 +166,7 @@ function update()
     if (gameOver){return;}
 
     // handle keyboard events
-    if (cursors.left.isDown)
+    if (cursors.left.isDown || controller.left)
     {
         player.setVelocityX(-280);
         player.anims.play('left', true);
@@ -179,27 +181,26 @@ function update()
         player.setVelocityX(0);
         player.anims.play('turn');
     }
-    if (cursors.up.isDown && player.body.blocked.down)
+
+    if (cursors.up.isDown && player.canJump && (player.body.blocked.down || player.onWall))
     {
-        player.setVelocityY(-400);
-    }
-    this.input.gamepad.once('connected', function (pad)
-    {
-        if (pad.A)
+        player.setVelocityY(-300);
+        if (player.onWall)
         {
-            console.log("A pressed");
+            // player.setVelocityX(-300);
+            player.body.velocity.x *= -5
         }
-    })
-
-    // bad wall jump
-    if ( !player.body.blocked.down && ((player.body.blocked.right && cursors.right.isDown)
-        || (player.body.blocked.left && cursors.left.isDown)))
-    {
-        player.setVelocityY(0);
-        player.body.blocked.down = true;
-    } else
-    {
-        player.body.blocked.down = false;
+        player.canJump = false;
+        player.onWall = false;
     }
-
+    if (player.body.blocked.down)
+    {
+        player.canJump = true;
+        player.onWall = false;
+    }
+    else if (player.body.blocked.right || player.body.blocked.left)
+    {
+        player.onWall = true;
+        // console.log(player.body.velocity)
+    }
 }

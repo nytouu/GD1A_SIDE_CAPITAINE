@@ -109,154 +109,10 @@
          "tileheight":32,
          "tiles":[
                 {
-                 "id":38,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":39,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":47,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":48,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
                  "id":49,
                  "properties":[
                         {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":50,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":51,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":70,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":71,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":78,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":84,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":101,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":104,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":109,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":117,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":131,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":132,
-                 "properties":[
-                        {
-                         "name":"estSolide",
+                         "name":"isSolid",
                          "type":"bool",
                          "value":true
                         }]
@@ -265,7 +121,7 @@
                  "id":134,
                  "properties":[
                         {
-                         "name":"estSolide",
+                         "name":"isSolid",
                          "type":"bool",
                          "value":true
                         }]
@@ -274,61 +130,7 @@
                  "id":135,
                  "properties":[
                         {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":137,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":138,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":141,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":149,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":163,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":164,
-                 "properties":[
-                        {
-                         "name":"estSolide",
+                         "name":"isSolid",
                          "type":"bool",
                          "value":true
                         }]
@@ -337,7 +139,7 @@
                  "id":166,
                  "properties":[
                         {
-                         "name":"estSolide",
+                         "name":"isSolid",
                          "type":"bool",
                          "value":true
                         }]
@@ -346,25 +148,7 @@
                  "id":167,
                  "properties":[
                         {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":169,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":170,
-                 "properties":[
-                        {
-                         "name":"estSolide",
+                         "name":"isSolid",
                          "type":"bool",
                          "value":true
                         }]
@@ -373,7 +157,7 @@
                  "id":173,
                  "properties":[
                         {
-                         "name":"estSolide",
+                         "name":"isSolid",
                          "type":"bool",
                          "value":true
                         }]
@@ -382,7 +166,7 @@
                  "id":175,
                  "properties":[
                         {
-                         "name":"estSolide",
+                         "name":"isSolid",
                          "type":"bool",
                          "value":true
                         }]
@@ -391,7 +175,7 @@
                  "id":176,
                  "properties":[
                         {
-                         "name":"estSolide",
+                         "name":"isSolid",
                          "type":"bool",
                          "value":true
                         }]
@@ -400,7 +184,7 @@
                  "id":178,
                  "properties":[
                         {
-                         "name":"estSolide",
+                         "name":"isSolid",
                          "type":"bool",
                          "value":true
                         }]
@@ -409,34 +193,7 @@
                  "id":181,
                  "properties":[
                         {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":197,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":200,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":205,
-                 "properties":[
-                        {
-                         "name":"estSolide",
+                         "name":"isSolid",
                          "type":"bool",
                          "value":true
                         }]
@@ -445,7 +202,7 @@
                  "id":207,
                  "properties":[
                         {
-                         "name":"estSolide",
+                         "name":"isSolid",
                          "type":"bool",
                          "value":true
                         }]
@@ -454,152 +211,16 @@
                  "id":208,
                  "properties":[
                         {
-                         "name":"estSolide",
+                         "name":"isSolid",
                          "type":"bool",
                          "value":true
                         }]
                 }, 
-                {
-                 "id":213,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":230,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":231,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":237,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":245,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":262,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":263,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":270,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":276,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":303,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":304,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                },
-            
                 {
                  "id":305,
                  "properties":[
                         {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":306,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":307,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":356,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":357,
-                 "properties":[
-                        {
-                         "name":"estSolide",
+                         "name":"isSolid",
                          "type":"bool",
                          "value":true
                         }]
@@ -608,25 +229,7 @@
                  "id":358,
                  "properties":[
                         {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":359,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":360,
-                 "properties":[
-                        {
-                         "name":"estSolide",
+                         "name":"isSolid",
                          "type":"bool",
                          "value":true
                         }]
@@ -635,25 +238,7 @@
                  "id":373,
                  "properties":[
                         {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":387,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":393,
-                 "properties":[
-                        {
-                         "name":"estSolide",
+                         "name":"isSpike",
                          "type":"bool",
                          "value":true
                         }]
@@ -662,7 +247,7 @@
                  "id":404,
                  "properties":[
                         {
-                         "name":"estSolide",
+                         "name":"isSpike",
                          "type":"bool",
                          "value":true
                         }]
@@ -671,7 +256,7 @@
                  "id":405,
                  "properties":[
                         {
-                         "name":"estSolide",
+                         "name":"isSolid",
                          "type":"bool",
                          "value":true
                         }]
@@ -680,25 +265,7 @@
                  "id":406,
                  "properties":[
                         {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":418,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":426,
-                 "properties":[
-                        {
-                         "name":"estSolide",
+                         "name":"isSpike",
                          "type":"bool",
                          "value":true
                         }]
@@ -707,43 +274,7 @@
                  "id":437,
                  "properties":[
                         {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":450,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":458,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":462,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":463,
-                 "properties":[
-                        {
-                         "name":"estSolide",
+                         "name":"isSpike",
                          "type":"bool",
                          "value":true
                         }]
@@ -752,25 +283,7 @@
                  "id":464,
                  "properties":[
                         {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":465,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":466,
-                 "properties":[
-                        {
-                         "name":"estSolide",
+                         "name":"isSolid",
                          "type":"bool",
                          "value":true
                         }]
@@ -779,7 +292,7 @@
                  "id":482,
                  "properties":[
                         {
-                         "name":"estSolide",
+                         "name":"isSolid",
                          "type":"bool",
                          "value":true
                         }]
@@ -788,115 +301,7 @@
                  "id":490,
                  "properties":[
                         {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":493,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":499,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":514,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":522,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":524,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":532,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":546,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":554,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":556,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":564,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":579,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":585,
-                 "properties":[
-                        {
-                         "name":"estSolide",
+                         "name":"isSolid",
                          "type":"bool",
                          "value":true
                         }]
@@ -905,7 +310,7 @@
                  "id":588,
                  "properties":[
                         {
-                         "name":"estSolide",
+                         "name":"isSolid",
                          "type":"bool",
                          "value":true
                         }]
@@ -914,25 +319,7 @@
                  "id":596,
                  "properties":[
                         {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":612,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":613,
-                 "properties":[
-                        {
-                         "name":"estSolide",
+                         "name":"isSolid",
                          "type":"bool",
                          "value":true
                         }]
@@ -941,98 +328,7 @@
                  "id":614,
                  "properties":[
                         {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":615,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":616,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":620,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":628,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":652,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":660,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":685,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                },
-            
-                {
-                 "id":691,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":718,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":719,
-                 "properties":[
-                        {
-                         "name":"estSolide",
+                         "name":"isSolid",
                          "type":"bool",
                          "value":true
                         }]
@@ -1041,25 +337,7 @@
                  "id":720,
                  "properties":[
                         {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":721,
-                 "properties":[
-                        {
-                         "name":"estSolide",
-                         "type":"bool",
-                         "value":true
-                        }]
-                }, 
-                {
-                 "id":722,
-                 "properties":[
-                        {
-                         "name":"estSolide",
+                         "name":"isSolid",
                          "type":"bool",
                          "value":true
                         }]
