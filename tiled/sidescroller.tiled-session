@@ -1,0 +1,42 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "level.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "": {
+            "scaleInDock": 1
+        },
+        "level.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1173,
+                "y": 655
+            }
+        },
+        "level.tmx#tilset": {
+            "scaleInDock": 1
+        }
+    },
+    "last.exportedFilePath": "/home/nytou/code/GD1A_SIDE_CAPITAINE/assets",
+    "last.imagePath": "/home/nytou/code/GD1A_SIDE_CAPITAINE/tiled",
+    "lastUsedTilesetExportFilter": "All Files (*)",
+    "map.height": 50,
+    "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
+    "map.lastUsedFormat": "tmx",
+    "map.width": 50,
+    "openFiles": [
+        "level.tmx"
+    ],
+    "project": "sidescroller.tiled-project",
+    "property.type": "bool",
+    "recentFiles": [
+        "level.tmx"
+    ],
+    "tileset.embedInMap": true
+}
