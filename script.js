@@ -39,6 +39,7 @@ var player;
 var cursors;
 var gameOver = false;
 var controller = false;
+var speed = 280;
 
 function create()
 {
@@ -168,12 +169,12 @@ function update()
     // handle keyboard events
     if (cursors.left.isDown || controller.left)
     {
-        player.setVelocityX(-280);
+        player.setVelocityX(-speed);
         player.anims.play('left', true);
     }
     else if (cursors.right.isDown)
     {
-        player.setVelocityX(280);
+        player.setVelocityX(speed);
         player.anims.play('right', true);
     }
     else
