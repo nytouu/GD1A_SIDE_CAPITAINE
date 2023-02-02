@@ -28,10 +28,10 @@ function preload()
 {
     // load assets
     this.load.image('background', 'assets/background.png');
-    this.load.image('phaser_tiles', 'assets/tileset.png')
+    this.load.image('tileset', 'assets/tileset.png')
     this.load.spritesheet('perso','assets/chara.png',
                 { frameWidth: 32, frameHeight: 64 });
-    this.load.tilemapTiledJSON("map", "assets/level.json");
+    this.load.tilemapTiledJSON("map", "assets/leveld.json");
 }
 
 var platforms;
@@ -42,16 +42,16 @@ var controller = false;
 
 function create()
 {
-    this.add.image(780, 805, 'background');
+    this.add.image(800, 800, 'background');
 
     // import from tiled
     const levelMap = this.add.tilemap("map");
     const tileset = levelMap.addTilesetImage(
-        "placeholder",
-        "phaser_tiles"
+        "tilset",
+        "tileset"
     );
     const platforms = levelMap.createLayer(
-        "platerforms",
+        "platforms",
         tileset
     );
 
@@ -78,20 +78,20 @@ function create()
     // player animations
     this.anims.create({
         key: 'left',
-        frames: this.anims.generateFrameNumbers('perso', {start:6,end:10}),
+        frames: this.anims.generateFrameNumbers('perso', {start:11,end:20}),
         frameRate: 10,
         repeat: -1
     });
 
     this.anims.create({
         key: 'turn',
-        frames: [ { key: 'perso', frame: 5 } ],
+        frames: [ { key: 'perso', frame: 10 } ],
         frameRate: 20
     });
 
     this.anims.create({
         key: 'right',
-        frames: this.anims.generateFrameNumbers('perso', {start:0,end:4}),
+        frames: this.anims.generateFrameNumbers('perso', {start:0,end:9}),
         frameRate: 10,
         repeat: -1
     });
