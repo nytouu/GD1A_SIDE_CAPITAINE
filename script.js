@@ -26,57 +26,114 @@ new Phaser.Game(config);
 
 function preload()
 {
-    // load assets
     this.load.image('background', 'assets/background.png');
     this.load.image('tileset', 'assets/tileset.png')
     this.load.spritesheet('perso','assets/chara.png',
                 { frameWidth: 32, frameHeight: 64 });
+    this.load.spritesheet('bat','assets/bat.png',
+                { frameWidth: 28, frameHeight: 28 });
     this.load.tilemapTiledJSON("map", "assets/leveld.json");
 }
+
 
 var platforms;
 var player;
 var cursors;
-var gameOver = false;
+var game_over = false;
 var controller = false;
-var speed = 280;
+var xspeed = 200;
+var yspeed = 310;
+var can_wall_jump = true;
+var can_jump = true;
+var input_locked = false;
+var bat1_x = 432;
+var bat1_y = 1300;
+
+
+function lock_input()
+{
+    input_locked = false;
+}
+
+function cd_wall_jump()
+{
+    can_wall_jump = true;
+}
+
+function wall_jump(side)
+{
+    if (side == "left")
+        x = -1;
+    else if (side == "right")
+        x = 1;
+
+    can_wall_jump = false;
+    input_locked = true;
+    setTimeout(cd_wall_jump, 500);
+    setTimeout(lock_input, 200);
+    player.setVelocityY(-yspeed);
+    player.setVelocityX(xspeed * x);
+}
+
+function kill_player()
+{
+    this.physics.pause();
+    player.setTint(0xff0000);
+    player.anims.play('turn');
+    game_over = true;
+}
+
+function hit_water()
+{
+    xspeed /= 2;
+    yspeed /= 2;
+}
 
 function create()
 {
     this.add.image(800, 800, 'background');
 
-    // import from tiled
-    const levelMap = this.add.tilemap("map");
-    const tileset = levelMap.addTilesetImage(
+    const level_map = this.add.tilemap("map");
+    const tileset = level_map.addTilesetImage(
         "tilset",
         "tileset"
     );
-    const platforms = levelMap.createLayer(
+    const layer_platforms = level_map.createLayer(
         "platforms",
         tileset
     );
+    const layer_spikes = level_map.createLayer(
+        "spikes",
+        tileset
+    );
+    const layer_water = level_map.createLayer(
+        "water",
+        tileset
+    );
 
-    // add player
+    hp_text=this.add.text(16,16,'sldkhfhdsfsfj',{fontSize:'32px',fill:'#000'});
+    hp_text.setText("hiho");
+
     player = this.physics.add.sprite(25, 1260, 'perso');
-    player.onWall = false;
-    player.canJump = true;
+    bat1 = this.physics.add.sprite(bat1_x, bat1_y, 'bat');
+    bat1.body.allowGravity = false;
 
-    // collisions
-    this.physics.add.collider(player, platforms);
-    platforms.setCollisionByProperty({ isSolid: true });
-    // platforms.setCollisionByProperty({ isSpike: true });
+    layer_platforms.setCollisionByProperty({ is_solid: true });
+    layer_spikes.setCollisionByProperty({ is_spike: true });
+    layer_water.setCollisionByProperty({ is_water: true });
     player.setCollideWorldBounds(true);
 
-    // set world bounds
-    this.physics.world.setBounds(0, 0, 1600, 1600);
-    // configure camera bounds
-    this.cameras.main.setBounds(0, 0, 1600, 1600);
-    // camlera follows player
-    this.cameras.main.startFollow(player);
-    this.cameras.main.setZoom(1.5);
-    this.cameras.main.setRoundPixels(false);
+    this.physics.add.collider(player, layer_platforms);
+    // this.physics.add.collider(player, layer_spikes, hit_spike, null, this);
+    this.physics.add.collider(player, layer_water, hit_water, null, this);
+    this.physics.add.collider(player, bat1, kill_player, null, this);
 
-    // player animations
+    this.physics.world.setBounds(0, 0, 1600, 1600);
+    this.cameras.main.setBounds(0, 0, 1600, 1600);
+
+    this.cameras.main.startFollow(player);
+    // this.cameras.main.setZoom();
+
     this.anims.create({
         key: 'left',
         frames: this.anims.generateFrameNumbers('perso', {start:11,end:20}),
@@ -97,6 +154,15 @@ function create()
         repeat: -1
     });
 
+    this.anims.create({
+        key: 'wing',
+        frames: this.anims.generateFrameNumbers('bat', {start:0,end:3}),
+        frameRate: 10,
+        repeat: -1
+    });
+    bat1.anims.play('wing', true);
+
+
     cursors = this.input.keyboard.createCursorKeys();
 
     this.input.gamepad.once('connected', function (pad)
@@ -108,17 +174,16 @@ function create()
 
 function update()
 {
-    if (gameOver){return;}
+    if (game_over){return;}
 
-    // handle keyboard events
     if (cursors.left.isDown || controller.left)
     {
-        player.setVelocityX(-speed);
+        player.setVelocityX(-xspeed);
         player.anims.play('left', true);
     }
-    else if (cursors.right.isDown)
+    else if (cursors.right.isDown || controller.right)
     {
-        player.setVelocityX(speed);
+        player.setVelocityX(xspeed);
         player.anims.play('right', true);
     }
     else
@@ -127,25 +192,23 @@ function update()
         player.anims.play('turn');
     }
 
-    if (cursors.up.isDown && player.canJump && (player.body.blocked.down || player.onWall))
+    if (can_jump && (cursors.up.isDown || controller.A))
     {
-        player.setVelocityY(-300);
-        if (player.onWall)
-        {
-            // player.setVelocityX(-300);
-            player.body.velocity.x *= -5
-        }
-        player.canJump = false;
-        player.onWall = false;
+        can_jump = false;
+        player.setVelocityY(-yspeed);
     }
+
+    if (can_wall_jump && (cursors.up.isDown || controller.A) && player.body.blocked.right)
+        wall_jump("left");
+
+    if (can_wall_jump && (cursors.up.isDown || controller.A) && player.body.blocked.left)
+        wall_jump("right");
+
     if (player.body.blocked.down)
-    {
-        player.canJump = true;
-        player.onWall = false;
-    }
-    else if (player.body.blocked.right || player.body.blocked.left)
-    {
-        player.onWall = true;
-        // console.log(player.body.velocity)
-    }
+        can_jump = true;
+
+    if (bat1.y > bat1_y + 100)
+        bat1.y -= 20;
+    if (bat1.y < bat1_y)
+        bat1.y += 20;
 }
