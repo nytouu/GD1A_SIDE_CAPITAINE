@@ -12,11 +12,11 @@
             "scaleInDock": 1
         },
         "level.tmx": {
-            "scale": 1.5,
+            "scale": 0.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 1173,
-                "y": 655
+                "x": 1415,
+                "y": 1019
             }
         },
         "level.tmx#tilset": {
