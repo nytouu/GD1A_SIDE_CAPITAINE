@@ -11,12 +11,24 @@
         "": {
             "scaleInDock": 1
         },
-        "level.tmx": {
-            "scale": 0.5,
-            "selectedLayer": 0,
+        "/home/nytou/docs/guenole/tiled/TilesetCOMPLET.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/home/nytou/docs/guenole/tiled/level.tmx": {
+            "scale": 0.5260625,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 1415,
-                "y": 1019
+                "x": 775.5732446239753,
+                "y": 1080.6700724723773
+            }
+        },
+        "level.tmx": {
+            "scale": 2,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 954,
+                "y": 808.75
             }
         },
         "level.tmx#tilset": {
@@ -36,7 +48,9 @@
     "project": "sidescroller.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "level.tmx"
+        "level.tmx",
+        "/home/nytou/docs/guenole/tiled/TilesetCOMPLET.tsx",
+        "/home/nytou/docs/guenole/tiled/level.tmx"
     ],
     "tileset.embedInMap": true
 }
