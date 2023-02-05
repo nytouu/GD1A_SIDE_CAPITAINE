@@ -55,6 +55,8 @@ const XSPEED = 200;
 const YSPEED = 310;
 const BAT1_X = 432;
 const BAT1_Y = 1364;
+const BAT2_X = 492;
+const BAT2_Y = 964;
 const TILE_SIZE = 32;
 const MAP_SIZE = 1600;
 
@@ -79,10 +81,10 @@ function create()
         "spikes",
         tileset
     );
-    // const layer_water = level_map.createLayer(
-    //     "water",
-    //     tileset
-    // );
+    const layer_water = level_map.createLayer(
+        "water",
+        tileset
+    );
 
     player = physics.add.sprite(25, 1260, 'perso');
     player.setSize(24,58).setOffset(4,6);
@@ -97,6 +99,12 @@ function create()
     bat1.alive = true;
     bat1.can_get_hit = true;
 
+    bat2 = physics.add.sprite(BAT2_X, BAT2_Y, 'bat');
+    bat2.body.allowGravity = false;
+    bat2.setVelocityY(-100);
+    bat2.alive = true;
+    bat2.can_get_hit = true;
+
     lifebar = physics.add.sprite(240, 100, 'lifebar');
     lifebar.body.allowGravity = false;
     lifebar.setScrollFactor(0,0);
@@ -109,7 +117,8 @@ function create()
     physics.add.collider(player, layer_platforms);
     physics.add.collider(player, layer_spikes, damage_player, null, this);
     // physics.add.overlap(player, layer_water, hit_water, null, this);
-    physics.add.overlap(player, bat1, hit_bat, null, this);
+    physics.add.overlap(player, bat1, hit_bat1, null, this);
+    physics.add.overlap(player, bat2, hit_bat2, null, this);
 
     physics.world.setBounds(0, 0, MAP_SIZE, MAP_SIZE);
     this.cameras.main.setBounds(0, 0, MAP_SIZE, MAP_SIZE);
@@ -144,6 +153,7 @@ function create()
         repeat: -1
     });
     bat1.anims.play('wing', true);
+    bat2.anims.play('wing', true);
 
     this.anims.create({
         key: 'life5',
@@ -256,6 +266,12 @@ function update()
         bat1.setVelocityY(-100);
     if (bat1.y < BAT1_Y)
         bat1.setVelocityY(100);
+
+    if (bat2.y > BAT2_Y + 100)
+        bat2.setVelocityY(-100);
+    if (bat2.y < BAT2_Y)
+        bat2.setVelocityY(100);
+
 }
 
 
@@ -273,6 +289,7 @@ function cd_can_get_hit()
 {
     player.can_get_hit = true;
     bat1.can_get_hit = true;
+    bat2.can_get_hit = true;
     if (!game_over)
         player.setTint(0xffffff);
 }
@@ -302,7 +319,7 @@ function kill_player()
     physics.pause();
 }
 
-function hit_bat()
+function hit_bat1()
 {
     if (player.x < bat1.x && bat1.alive && bat1.can_get_hit)
     {
@@ -317,6 +334,26 @@ function hit_bat()
         }, this);
     }
     else if (bat1.alive)
+    {
+        damage_player();
+    }
+}
+
+function hit_bat2()
+{
+    if (player.x < bat2.x && bat2.alive && bat2.can_get_hit)
+    {
+        bat2.alive = false;
+
+        bat2.setTint(0xff0000);
+        this.tweens.add({
+            targets: bat2,
+            alpha: 0,
+            duration: 2000,
+            ease: 'Power2'
+        }, this);
+    }
+    else if (bat2.alive)
     {
         damage_player();
     }
