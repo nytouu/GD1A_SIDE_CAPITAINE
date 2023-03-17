@@ -17,6 +17,7 @@ var config =
         create: create,
         update: update
     },
+    pixelArt: true,
     input:
     {
         gamepad: true
@@ -105,7 +106,7 @@ function create()
     bat2.alive = true;
     bat2.can_get_hit = true;
 
-    lifebar = physics.add.sprite(240, 100, 'lifebar');
+    lifebar = physics.add.sprite(340, 160, 'lifebar');
     lifebar.body.allowGravity = false;
     lifebar.setScrollFactor(0,0);
 
@@ -124,7 +125,7 @@ function create()
     this.cameras.main.setBounds(0, 0, MAP_SIZE, MAP_SIZE);
 
     this.cameras.main.startFollow(player);
-    this.cameras.main.setZoom(1.25);
+    this.cameras.main.setZoom(1.5);
 
     this.anims.create({
         key: 'left',
